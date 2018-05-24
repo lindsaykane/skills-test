@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="http://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+
+    <style type="text/css">
+        .container {
+            margin-top: 150px;
+        }
+
+        #form {
+            margin-top: 50px;
+        }
+
+        .submit-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .home-container, .error-container {
+            -webkit-box-shadow: 5px 10px 8px #888888;
+            -moz-box-shadow: 5px 10px 8px #888888;
+            box-shadow: 5px 10px 8px #888888;
+            padding: 30px;
+            background: #d3d3d3;
+        }
+
+        .error-container {
+            text-align: center;
+        }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
