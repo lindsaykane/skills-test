@@ -16,13 +16,15 @@ class TableController extends \Core\Controller
     public function generateTableAction() {
         $return = [];
 
-        if(isset($_FILES) && isset($_FILES['fileToUpload']) && isset($_FILES['fileToUpload']['type']) && $_FILES['fileToUpload']['type'] == 'application/json') {
-            $table = new Table();
-            $return = $table->jsonToArray($_FILES);
-            $return['error'] = 200;
-        } else {
-            $return['error'] = 400;
+        $table = new Table();
+
+        $setFileContents = $table->setFileContents($_FILES);
+        $return['error'] = $setFileContents['error'];
+
+        if($return['error'] == 200) {
+            $return = $table->jsonToArray();
         }
+
         View::renderTemplate('table.html',$return);
     }
 }
