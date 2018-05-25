@@ -4,11 +4,33 @@ namespace App\Models;
 
 class Table extends \Core\Model
 {
-    public function jsonToArray($file) {
+    private $fileContents;
+
+    public function getFileContents() {
+        return $this->fileContents;
+    }
+
+    public function setFileContents($file) {
+        $return = [];
+
+        if(isset($_FILES) && isset($_FILES['fileToUpload']) && isset($_FILES['fileToUpload']['type']) && $_FILES['fileToUpload']['type'] == 'application/json') {
+            $return['error'] = 200;
+        } else {
+            $return['error'] = 400;
+        }
+
+        $this->fileContents = $file;
+
+        return $return;
+    }
+
+    public function jsonToArray() {
         $result = [];
         $result['fileContents'] = [];
 
-        $getFileContents = json_decode(file_get_contents($file['fileToUpload']['tmp_name']), true);
+        $this->setFileContents($this->fileContents);
+
+        $getFileContents = json_decode(file_get_contents($this->fileContents['fileToUpload']['tmp_name']), true);
 
         $getFileContents = $this->array_msort($getFileContents, array('LName'=>SORT_DESC));
 
